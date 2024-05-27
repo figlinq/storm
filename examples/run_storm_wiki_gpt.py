@@ -76,9 +76,8 @@ def main(args):
 
     runner = STORMWikiRunner(engine_args, lm_configs, rm)
 
-    topic = input('Topic: ')
     runner.run(
-        topic=topic,
+        topic=args.topic,
         do_research=args.do_research,
         do_generate_outline=args.do_generate_outline,
         do_generate_article=args.do_generate_article,
@@ -97,7 +96,7 @@ if __name__ == '__main__':
                         help='Maximum number of threads to use. The information seeking part and the article generation'
                              'part can speed up by using multiple threads. Consider reducing it if keep getting '
                              '"Exceed rate limit" error when calling LM API.')
-    parser.add_argument('--retriever', type=str, choices=['bing', 'you'],
+    parser.add_argument('--retriever', type=str, choices=['bing', 'you'], default="you",
                         help='The search engine API to use for retrieving information.')
     # stage of the pipeline
     parser.add_argument('--do-research', action='store_true',
@@ -121,5 +120,6 @@ if __name__ == '__main__':
                         help='Top k collected references for each section title.')
     parser.add_argument('--remove-duplicate', action='store_true',
                         help='If True, remove duplicate content from the article.')
-
+    parser.add_argument('--topic', type=str, default=None, help='The topic to write an article about.')
+    
     main(parser.parse_args())
