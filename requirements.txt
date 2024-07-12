@@ -16,3 +16,4 @@ tqdm==4.66.0
 httpx
 langchain_text_splitters 
 trafilatura
+huggingface-hub==0.23.4
