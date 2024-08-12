@@ -17,3 +17,4 @@ httpx
 langchain_text_splitters 
 trafilatura
 huggingface-hub==0.24.5
+lxml-html-clean
